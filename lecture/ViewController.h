@@ -7,7 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Views/ViewDisplay.h"
+#import "Views/ViewInput.h"
+#import "Views/ViewAction.h"
+#import "Models/Calculator.h"
 
 @interface ViewController : UIViewController
+
+@property (nonatomic) ViewDisplay *display;
+
+- (void)inputNumber:(id)sender;
+- (void)deleteValue;
+- (void)changeSign;
+- (void)makePercentage;
+- (void)makeDecimal;
+- (void)doAddition;
+- (void)doSubtraction;
+- (void)doMultiplication;
+- (void)doDivision;
+- (void)doResult;
 
 @end

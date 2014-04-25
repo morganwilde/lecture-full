@@ -21,6 +21,11 @@
 		2E9B6C5F1909970600FB6475 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E9B6C411909970600FB6475 /* UIKit.framework */; };
 		2E9B6C671909970600FB6475 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2E9B6C651909970600FB6475 /* InfoPlist.strings */; };
 		2E9B6C691909970600FB6475 /* lectureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9B6C681909970600FB6475 /* lectureTests.m */; };
+		2E9B6C741909A3F200FB6475 /* ViewDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9B6C731909A3F200FB6475 /* ViewDisplay.m */; };
+		2E9B6C781909A6FC00FB6475 /* ViewInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9B6C771909A6FC00FB6475 /* ViewInput.m */; };
+		2E9DB6B9190A998A00ED18E2 /* _Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DB6B8190A998A00ED18E2 /* _Calculator.m */; };
+		2EE040631909C37A003DF1D4 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE040621909C37A003DF1D4 /* Calculator.m */; };
+		2EE040671909D657003DF1D4 /* ViewAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EE040661909D657003DF1D4 /* ViewAction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,15 @@
 		2E9B6C641909970600FB6475 /* lectureTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "lectureTests-Info.plist"; sourceTree = "<group>"; };
 		2E9B6C661909970600FB6475 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2E9B6C681909970600FB6475 /* lectureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lectureTests.m; sourceTree = "<group>"; };
+		2E9B6C721909A3F200FB6475 /* ViewDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewDisplay.h; path = Views/ViewDisplay.h; sourceTree = "<group>"; };
+		2E9B6C731909A3F200FB6475 /* ViewDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewDisplay.m; path = Views/ViewDisplay.m; sourceTree = "<group>"; };
+		2E9B6C761909A6FC00FB6475 /* ViewInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewInput.h; path = Views/ViewInput.h; sourceTree = "<group>"; };
+		2E9B6C771909A6FC00FB6475 /* ViewInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewInput.m; path = Views/ViewInput.m; sourceTree = "<group>"; };
+		2E9DB6B8190A998A00ED18E2 /* _Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = _Calculator.m; path = Models/_Calculator.m; sourceTree = "<group>"; };
+		2EE040611909C37A003DF1D4 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Calculator.h; path = Models/Calculator.h; sourceTree = "<group>"; };
+		2EE040621909C37A003DF1D4 /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Calculator.m; path = Models/Calculator.m; sourceTree = "<group>"; };
+		2EE040651909D657003DF1D4 /* ViewAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewAction.h; path = Views/ViewAction.h; sourceTree = "<group>"; };
+		2EE040661909D657003DF1D4 /* ViewAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewAction.m; path = Views/ViewAction.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +126,11 @@
 		2E9B6C431909970600FB6475 /* lecture */ = {
 			isa = PBXGroup;
 			children = (
-				2E9B6C4C1909970600FB6475 /* AppDelegate.h */,
-				2E9B6C4D1909970600FB6475 /* AppDelegate.m */,
-				2E9B6C4F1909970600FB6475 /* Main.storyboard */,
+				2EE040641909C37E003DF1D4 /* Models */,
+				2E9B6C751909A3F600FB6475 /* Views */,
 				2E9B6C521909970600FB6475 /* ViewController.h */,
 				2E9B6C531909970600FB6475 /* ViewController.m */,
-				2E9B6C551909970600FB6475 /* Images.xcassets */,
+				2E9B6C4F1909970600FB6475 /* Main.storyboard */,
 				2E9B6C441909970600FB6475 /* Supporting Files */,
 			);
 			path = lecture;
@@ -126,6 +139,9 @@
 		2E9B6C441909970600FB6475 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2E9B6C551909970600FB6475 /* Images.xcassets */,
+				2E9B6C4C1909970600FB6475 /* AppDelegate.h */,
+				2E9B6C4D1909970600FB6475 /* AppDelegate.m */,
 				2E9B6C451909970600FB6475 /* lecture-Info.plist */,
 				2E9B6C461909970600FB6475 /* InfoPlist.strings */,
 				2E9B6C491909970600FB6475 /* main.m */,
@@ -150,6 +166,29 @@
 				2E9B6C651909970600FB6475 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2E9B6C751909A3F600FB6475 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2E9B6C721909A3F200FB6475 /* ViewDisplay.h */,
+				2E9B6C731909A3F200FB6475 /* ViewDisplay.m */,
+				2E9B6C761909A6FC00FB6475 /* ViewInput.h */,
+				2E9B6C771909A6FC00FB6475 /* ViewInput.m */,
+				2EE040651909D657003DF1D4 /* ViewAction.h */,
+				2EE040661909D657003DF1D4 /* ViewAction.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2EE040641909C37E003DF1D4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2EE040611909C37A003DF1D4 /* Calculator.h */,
+				2EE040621909C37A003DF1D4 /* Calculator.m */,
+				2E9DB6B8190A998A00ED18E2 /* _Calculator.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,7 +289,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E9B6C541909970600FB6475 /* ViewController.m in Sources */,
+				2E9DB6B9190A998A00ED18E2 /* _Calculator.m in Sources */,
+				2E9B6C741909A3F200FB6475 /* ViewDisplay.m in Sources */,
 				2E9B6C4E1909970600FB6475 /* AppDelegate.m in Sources */,
+				2EE040671909D657003DF1D4 /* ViewAction.m in Sources */,
+				2EE040631909C37A003DF1D4 /* Calculator.m in Sources */,
+				2E9B6C781909A6FC00FB6475 /* ViewInput.m in Sources */,
 				2E9B6C4A1909970600FB6475 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +500,7 @@
 				2E9B6C6E1909970600FB6475 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2E9B6C6F1909970600FB6475 /* Build configuration list for PBXNativeTarget "lectureTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +509,7 @@
 				2E9B6C711909970600FB6475 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
