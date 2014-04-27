@@ -1,127 +1,148 @@
 //
 //  Calculator.m
-//  Calculator
+//  lecture
 //
-//  Created by Aivaras Saulius on 4/25/14.
-//  Copyright (c) 2014 Aivaras Saulius. All rights reserved.
+//  Created by Morgan Wilde on 25/04/2014.
+//  Copyright (c) 2014 morganwilde. All rights reserved.
 //
 
+#include <math.h>
 #import "Calculator.h"
-#import <math.h>
+#define EPSILON 0.00001
 
-@interface Calculator()
-@property (nonatomic) int lastPow;
-@end
+@implementation Calculator
 
-@implementation Calculator : NSObject
-
-- (id)init {
+- (id)init
+{
     self = [super init];
-    if (self != nil) {
-        self.lastPow = 0;
-        self.lastAction = 5;
+    if (self) {
+        self.value = 0.0;
+        self.buffer = 0.0;
         self.decimalPart = NO;
-        self.buffer =  0;
-        self.value = 0;
         self.inAction = NO;
+        self.lastAction = 0;
     }
     return self;
 }
 
-- (void)appendNumber:(double)number {
-    if (! self.isDecimalPart) {
-        self.value *= 10;
-        if (self.value > 0) {
-            self.value += number;
-        } else {
-            self.value -= number;
+- (void)appendNumber:(double)number
+{
+    if (self.isDecimalPart) {
+        int power = 1;
+        double temp = self.value;
+        while ((temp - floor(temp)) > EPSILON) {
+            temp *= 10;
+            power++;
         }
+        self.value = self.value + number*pow(10, -power);
     } else {
-        if (self.value > 0) {
-            self.value += number * pow(10, -self.lastPow++);
-        } else {
-            self.value -= number * pow(10, -self.lastPow++);
-        }
+        self.value = self.value*10 + number;
     }
-    
 }
-- (double)getValue {
+- (double)getValue
+{
     return self.value;
 }
-- (NSString *)getValueString {
-    NSString* str = [[NSString alloc] initWithFormat: @"%g", self.value];
-    return str;
+- (NSString *)getValueString
+{
+    NSString *string;
+    
+    double valueFloor = floor(self.value);
+    if ((self.value - valueFloor) < EPSILON) {
+        string = [[NSString alloc] initWithFormat:@"%d", (int)self.value];
+    } else {
+        string = [[NSString alloc] initWithFormat:@"%.5g", (double)self.value];
+    }
+    
+    return string;
 }
-- (void)deleteValue {
+- (void)deleteValue
+{
     self.value = 0;
     self.buffer = 0;
     self.decimalPart = NO;
-    self.lastPow = 0;
-    self.inAction = NO;
 }
-- (void)changeSign {
+- (void)changeSign
+{
     self.value *= -1;
 }
-- (void)makePercentage{
-    [self doResult];
-    self.DecimalPart = YES;
+- (void)makePercentage
+{
     self.value /= 100;
-}
-- (void)makeDecimal {
-    [self doResult];
     self.decimalPart = YES;
-    self.lastPow = 0;
 }
-- (void)doAddition {
-    [self doResult];
-    self.lastAction = 1;
-    self.inAction = YES;
-    self.buffer = self.value;
-    
+- (void)makeDecimal
+{
+    self.decimalPart = YES;
 }
-- (void)doSubtraction {
-    self.lastAction = 2;
-    [self doResult];
-    self.inAction = YES;
-    self.buffer = self.value;
-}
-- (void)doMultiplication {
-    self.lastAction = 3;
-    self.inAction = YES;
-    self.buffer = self.value;
-}
-- (void)doDivision {
-    self.lastAction = 4;
-    self.inAction = YES;
-    self.buffer = self.value;
-}
-- (void)doResult {
-    switch (self.lastAction) {
-        case 1:
-            // ADDITION
-            self.value += self.buffer;
-            break;
-        case 2:
-            // SUBTRACTION
-            self.value -= self.buffer;
-            break;
-        case 3:
-            // MULTIPLICATION
-            self.value *= self.buffer;
-            break;
-        case 4:
-            //DIVISION
-            self.value /= self.buffer;
-            break;
-        default:
-            break;
+- (void)doAddition
+{
+    if (self.inAction) {
+        self.buffer += self.value;
+    } else {
+        self.buffer = self.value;
     }
-    
-    self.lastAction = 5;
+    self.value = 0.0;
+    self.inAction = YES;
+    self.lastAction = 1;
     self.decimalPart = NO;
-    self.buffer = self.value;
-    self.inAction = NO;
-    self.lastPow = 0;
+}
+- (void)doSubtraction
+{
+    if (self.inAction) {
+        self.buffer -= self.value;
+    } else {
+        self.buffer = self.value;
+    }
+    self.value = 0.0;
+    self.inAction = YES;
+    self.decimalPart = NO;
+    self.lastAction = 2;
+}
+- (void)doMultiplication
+{
+    if (self.inAction) {
+        self.buffer *= self.value;
+    } else {
+        self.buffer = self.value;
+    }
+    self.value = 0.0;
+    self.inAction = YES;
+    self.decimalPart = NO;
+    self.lastAction = 3;
+}
+- (void)doDivision
+{
+    if (self.inAction) {
+        self.buffer /= self.value;
+    } else {
+        self.buffer = self.value;
+    }
+    self.value = 0.0;
+    self.inAction = YES;
+    self.decimalPart = NO;
+    self.lastAction = 4;
+}
+- (void)doResult
+{
+    if (self.inAction) {
+        
+        if (self.lastAction == 1) {
+            self.buffer += self.value;
+        } else if (self.lastAction == 2) {
+            self.buffer -= self.value;
+        } else if (self.lastAction == 3) {
+            self.buffer *= self.value;
+        } else if (self.lastAction == 4) {
+            self.buffer /= self.value;
+        }
+        self.value = self.buffer;
+        NSLog(@"Result, buffer = %f", self.buffer);
+        self.buffer = 0.0;
+        self.lastAction = 0;
+        self.inAction = NO;
+        
+    }
 }
 
 @end
